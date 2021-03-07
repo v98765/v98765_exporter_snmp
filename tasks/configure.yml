@@ -1,0 +1,19 @@
+- name: Copy the snmp exporter systemd service file
+  template:
+    src: snmp_exporter.service.j2
+    dest: /lib/systemd/system/snmp_exporter.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart snmp_exporter
+
+- name: Copy configuration file
+  copy:
+    src: snmp.yml
+    dest: /etc/snmp_exporter/snmp.yml
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload snmp_exporter

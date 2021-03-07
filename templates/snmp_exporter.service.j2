@@ -1,0 +1,31 @@
+[Unit]
+Description=Prometheus SNMP Exporter
+After=network-online.target auditd.service
+StartLimitInterval=0
+
+[Service]
+Type=simple
+User=nobody
+Group=nogroup
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/usr/local/bin/snmp_exporter \
+  --web.listen-address=0.0.0.0:9116 \
+  --log.level=info \
+  --config.file=/etc/snmp_exporter/snmp.yml
+
+KillMode=process
+SyslogIdentifier=snmp_exporter
+Restart=always
+RestartSec=1
+LimitNOFILE=4096
+
+PrivateTmp=yes
+ProtectHome=yes
+NoNewPrivileges=yes
+ProtectSystem=full
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=yes
+
+[Install]
+WantedBy=multi-user.target

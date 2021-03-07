@@ -1,0 +1,5 @@
+---
+# defaults file for v98765_exporter_snmp
+snmp_exporter_version: "0.20.0"
+snmp_exporter_install_dir: "/usr/local/bin"
+snmp_exporter_repo_dir: "/var/tmp/archive"

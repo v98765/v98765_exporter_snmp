@@ -1,0 +1,13 @@
+---
+# handlers file for v98765_exporter_snmp
+- name: reload snmp_exporter
+  systemd:
+    daemon_reload: true
+    name: snmp_exporter
+    state: reloaded
+
+- name: restart snmp_exporter
+  systemd:
+    daemon_reload: true
+    name: snmp_exporter
+    state: restarted

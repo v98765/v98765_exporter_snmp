@@ -1,0 +1,3035 @@
+# WARNING: This file was auto-generated using snmp_exporter generator, manual changes will be lost.
+exos:
+  walk:
+  - 1.3.6.1.2.1.15.3.1.15
+  - 1.3.6.1.2.1.15.3.1.2
+  - 1.3.6.1.2.1.2.2.1.14
+  - 1.3.6.1.2.1.2.2.1.19
+  - 1.3.6.1.2.1.2.2.1.3
+  - 1.3.6.1.2.1.2.2.1.7
+  - 1.3.6.1.2.1.2.2.1.8
+  - 1.3.6.1.2.1.2.2.1.9
+  - 1.3.6.1.2.1.31.1.1.1.1
+  - 1.3.6.1.2.1.31.1.1.1.10
+  - 1.3.6.1.2.1.31.1.1.1.11
+  - 1.3.6.1.2.1.31.1.1.1.15
+  - 1.3.6.1.2.1.31.1.1.1.6
+  - 1.3.6.1.2.1.31.1.1.1.7
+  - 1.3.6.1.4.1.1916.1.1.1.27.1.2
+  - 1.3.6.1.4.1.1916.1.1.1.9
+  - 1.3.6.1.4.1.1916.1.32.1.4.1.8
+  - 1.3.6.1.4.1.1916.1.32.2.2
+  get:
+  - 1.3.6.1.2.1.1.3.0
+  - 1.3.6.1.4.1.1916.1.1.1.7.0
+  - 1.3.6.1.4.1.1916.1.1.1.8.0
+  metrics:
+  - name: sysUpTime
+    oid: 1.3.6.1.2.1.1.3
+    type: gauge
+    help: The time (in hundredths of a second) since the network management portion
+      of the system was last re-initialized. - 1.3.6.1.2.1.1.3
+  - name: bgpPeerFsmEstablishedTransitions
+    oid: 1.3.6.1.2.1.15.3.1.15
+    type: counter
+    help: The total number of times the BGP FSM transitioned into the established
+      state. - 1.3.6.1.2.1.15.3.1.15
+    indexes:
+    - labelname: bgpPeerRemoteAddr
+      type: InetAddressIPv4
+  - name: bgpPeerState
+    oid: 1.3.6.1.2.1.15.3.1.2
+    type: gauge
+    help: The BGP peer connection state. - 1.3.6.1.2.1.15.3.1.2
+    indexes:
+    - labelname: bgpPeerRemoteAddr
+      type: InetAddressIPv4
+    enum_values:
+      1: idle
+      2: connect
+      3: active
+      4: opensent
+      5: openconfirm
+      6: established
+  - name: ifInErrors
+    oid: 1.3.6.1.2.1.2.2.1.14
+    type: counter
+    help: For packet-oriented interfaces, the number of inbound packets that contained
+      errors preventing them from being deliverable to a higher-layer protocol - 1.3.6.1.2.1.2.2.1.14
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifOutDiscards
+    oid: 1.3.6.1.2.1.2.2.1.19
+    type: counter
+    help: The number of outbound packets which were chosen to be discarded even though
+      no errors had been detected to prevent their being transmitted - 1.3.6.1.2.1.2.2.1.19
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifAdminStatus
+    oid: 1.3.6.1.2.1.2.2.1.7
+    type: gauge
+    help: The desired state of the interface - 1.3.6.1.2.1.2.2.1.7
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+    enum_values:
+      1: up
+      2: down
+      3: testing
+  - name: ifOperStatus
+    oid: 1.3.6.1.2.1.2.2.1.8
+    type: gauge
+    help: The current operational state of the interface - 1.3.6.1.2.1.2.2.1.8
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+    enum_values:
+      1: up
+      2: down
+      3: testing
+      4: unknown
+      5: dormant
+      6: notPresent
+      7: lowerLayerDown
+  - name: ifLastChange
+    oid: 1.3.6.1.2.1.2.2.1.9
+    type: gauge
+    help: The value of sysUpTime at the time the interface entered its current operational
+      state - 1.3.6.1.2.1.2.2.1.9
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCOutOctets
+    oid: 1.3.6.1.2.1.31.1.1.1.10
+    type: counter
+    help: The total number of octets transmitted out of the interface, including framing
+      characters - 1.3.6.1.2.1.31.1.1.1.10
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCOutUcastPkts
+    oid: 1.3.6.1.2.1.31.1.1.1.11
+    type: counter
+    help: The total number of packets that higher-level protocols requested be transmitted,
+      and which were not addressed to a multicast or broadcast address at this sub-layer,
+      including those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.11
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHighSpeed
+    oid: 1.3.6.1.2.1.31.1.1.1.15
+    type: gauge
+    help: An estimate of the interface's current bandwidth in units of 1,000,000 bits
+      per second - 1.3.6.1.2.1.31.1.1.1.15
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCInOctets
+    oid: 1.3.6.1.2.1.31.1.1.1.6
+    type: counter
+    help: The total number of octets received on the interface, including framing
+      characters - 1.3.6.1.2.1.31.1.1.1.6
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCInUcastPkts
+    oid: 1.3.6.1.2.1.31.1.1.1.7
+    type: counter
+    help: The number of packets, delivered by this sub-layer to a higher (sub-)layer,
+      which were not addressed to a multicast or broadcast address at this sub-layer
+      - 1.3.6.1.2.1.31.1.1.1.7
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: extremePowerSupplyStatus
+    oid: 1.3.6.1.4.1.1916.1.1.1.27.1.2
+    type: gauge
+    help: Status of the power supply. - 1.3.6.1.4.1.1916.1.1.1.27.1.2
+    indexes:
+    - labelname: extremePowerSupplyNumber
+      type: gauge
+    enum_values:
+      1: notPresent
+      2: presentOK
+      3: presentNotOK
+      4: presentPowerOff
+  - name: extremeOverTemperatureAlarm
+    oid: 1.3.6.1.4.1.1916.1.1.1.7
+    type: gauge
+    help: Alarm status of overtemperature sensor in device enclosure. - 1.3.6.1.4.1.1916.1.1.1.7
+    enum_values:
+      1: "true"
+      2: "false"
+  - name: extremeCurrentTemperature
+    oid: 1.3.6.1.4.1.1916.1.1.1.8
+    type: gauge
+    help: Current temperature in degrees celcius measured inside device enclosure.
+      - 1.3.6.1.4.1.1916.1.1.1.8
+  - name: extremeFanNumber
+    oid: 1.3.6.1.4.1.1916.1.1.1.9.1.1
+    type: gauge
+    help: Identifier of cooling fan, numbered from the front and/or left side of device.
+      - 1.3.6.1.4.1.1916.1.1.1.9.1.1
+    indexes:
+    - labelname: extremeFanNumber
+      type: gauge
+  - name: extremeFanOperational
+    oid: 1.3.6.1.4.1.1916.1.1.1.9.1.2
+    type: gauge
+    help: Operational status of a cooling fan. - 1.3.6.1.4.1.1916.1.1.1.9.1.2
+    indexes:
+    - labelname: extremeFanNumber
+      type: gauge
+    enum_values:
+      1: "true"
+      2: "false"
+  - name: extremeFanEntPhysicalIndex
+    oid: 1.3.6.1.4.1.1916.1.1.1.9.1.3
+    type: gauge
+    help: The entity index for this fan entity in the entityPhysicalTable table of
+      the entity MIB. - 1.3.6.1.4.1.1916.1.1.1.9.1.3
+    indexes:
+    - labelname: extremeFanNumber
+      type: gauge
+  - name: extremeFanSpeed
+    oid: 1.3.6.1.4.1.1916.1.1.1.9.1.4
+    type: gauge
+    help: The speed (RPM) of a cooling fan in the fantray. - 1.3.6.1.4.1.1916.1.1.1.9.1.4
+    indexes:
+    - labelname: extremeFanNumber
+      type: gauge
+  - name: extremeCpuMonitorSystemUtilization1min
+    oid: 1.3.6.1.4.1.1916.1.32.1.4.1.8
+    type: DisplayString
+    help: The CPU utilization by system resources - 1.3.6.1.4.1.1916.1.32.1.4.1.8
+    indexes:
+    - labelname: extremeCpuMonitorSystemSlotId
+      type: gauge
+    regex_extracts:
+      "":
+      - value: $1
+        regex: ^(?:(.*))$
+  - name: extremeMemoryMonitorSystemSlotId
+    oid: 1.3.6.1.4.1.1916.1.32.2.2.1.1
+    type: gauge
+    help: Slot Id of the MSM monitored. - 1.3.6.1.4.1.1916.1.32.2.2.1.1
+    indexes:
+    - labelname: extremeMemoryMonitorSystemSlotId
+      type: gauge
+  - name: extremeMemoryMonitorSystemTotal
+    oid: 1.3.6.1.4.1.1916.1.32.2.2.1.2
+    type: DisplayString
+    help: Total amount of DRAM in Kbytes in the system. - 1.3.6.1.4.1.1916.1.32.2.2.1.2
+    indexes:
+    - labelname: extremeMemoryMonitorSystemSlotId
+      type: gauge
+    regex_extracts:
+      "":
+      - value: $1
+        regex: ^(?:(.*))$
+  - name: extremeMemoryMonitorSystemFree
+    oid: 1.3.6.1.4.1.1916.1.32.2.2.1.3
+    type: DisplayString
+    help: Total amount of free memory in Kbytes in the system. - 1.3.6.1.4.1.1916.1.32.2.2.1.3
+    indexes:
+    - labelname: extremeMemoryMonitorSystemSlotId
+      type: gauge
+    regex_extracts:
+      "":
+      - value: $1
+        regex: ^(?:(.*))$
+  - name: extremeMemoryMonitorSystemUsage
+    oid: 1.3.6.1.4.1.1916.1.32.2.2.1.4
+    type: DisplayString
+    help: Total amount of memory used by system services in Kbytes in the system.
+      - 1.3.6.1.4.1.1916.1.32.2.2.1.4
+    indexes:
+    - labelname: extremeMemoryMonitorSystemSlotId
+      type: gauge
+    regex_extracts:
+      "":
+      - value: $1
+        regex: ^(?:(.*))$
+  - name: extremeMemoryMonitorUserUsage
+    oid: 1.3.6.1.4.1.1916.1.32.2.2.1.5
+    type: DisplayString
+    help: Total amount of memory used by applications in Kbytes in the system. - 1.3.6.1.4.1.1916.1.32.2.2.1.5
+    indexes:
+    - labelname: extremeMemoryMonitorSystemSlotId
+      type: gauge
+    regex_extracts:
+      "":
+      - value: $1
+        regex: ^(?:(.*))$
+  retries: 1
+mds9k:
+  walk:
+  - 1.3.6.1.2.1.2.2.1.3
+  - 1.3.6.1.2.1.2.2.1.7
+  - 1.3.6.1.2.1.2.2.1.8
+  - 1.3.6.1.2.1.2.2.1.9
+  - 1.3.6.1.2.1.31.1.1.1.1
+  - 1.3.6.1.2.1.31.1.1.1.15
+  - 1.3.6.1.4.1.9.9.109.1.1.1.1.12
+  - 1.3.6.1.4.1.9.9.109.1.1.1.1.13
+  - 1.3.6.1.4.1.9.9.109.1.1.1.1.7
+  - 1.3.6.1.4.1.9.9.117.1.1.2
+  - 1.3.6.1.4.1.9.9.117.1.2.1
+  - 1.3.6.1.4.1.9.9.117.1.4.1
+  - 1.3.6.1.4.1.9.9.289.1.2.1
+  - 1.3.6.1.4.1.9.9.289.1.2.3
+  - 1.3.6.1.4.1.9.9.91.1.1.1.1.4
+  - 1.3.6.1.4.1.9.9.91.1.1.1.1.5
+  get:
+  - 1.3.6.1.2.1.1.3.0
+  metrics:
+  - name: sysUpTime
+    oid: 1.3.6.1.2.1.1.3
+    type: gauge
+    help: The time (in hundredths of a second) since the network management portion
+      of the system was last re-initialized. - 1.3.6.1.2.1.1.3
+  - name: ifAdminStatus
+    oid: 1.3.6.1.2.1.2.2.1.7
+    type: gauge
+    help: The desired state of the interface - 1.3.6.1.2.1.2.2.1.7
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+    enum_values:
+      1: up
+      2: down
+      3: testing
+  - name: ifOperStatus
+    oid: 1.3.6.1.2.1.2.2.1.8
+    type: gauge
+    help: The current operational state of the interface - 1.3.6.1.2.1.2.2.1.8
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+    enum_values:
+      1: up
+      2: down
+      3: testing
+      4: unknown
+      5: dormant
+      6: notPresent
+      7: lowerLayerDown
+  - name: ifLastChange
+    oid: 1.3.6.1.2.1.2.2.1.9
+    type: gauge
+    help: The value of sysUpTime at the time the interface entered its current operational
+      state - 1.3.6.1.2.1.2.2.1.9
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHighSpeed
+    oid: 1.3.6.1.2.1.31.1.1.1.15
+    type: gauge
+    help: An estimate of the interface's current bandwidth in units of 1,000,000 bits
+      per second - 1.3.6.1.2.1.31.1.1.1.15
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: cpmCPUMemoryUsed
+    oid: 1.3.6.1.4.1.9.9.109.1.1.1.1.12
+    type: gauge
+    help: The overall CPU wide system memory which is currently under use. - 1.3.6.1.4.1.9.9.109.1.1.1.1.12
+    indexes:
+    - labelname: cpmCPUTotalIndex
+      type: gauge
+  - name: cpmCPUMemoryFree
+    oid: 1.3.6.1.4.1.9.9.109.1.1.1.1.13
+    type: gauge
+    help: The overall CPU wide system memory which is currently free. - 1.3.6.1.4.1.9.9.109.1.1.1.1.13
+    indexes:
+    - labelname: cpmCPUTotalIndex
+      type: gauge
+  - name: cpmCPUTotal1minRev
+    oid: 1.3.6.1.4.1.9.9.109.1.1.1.1.7
+    type: gauge
+    help: The overall CPU busy percentage in the last 1 minute period - 1.3.6.1.4.1.9.9.109.1.1.1.1.7
+    indexes:
+    - labelname: cpmCPUTotalIndex
+      type: gauge
+  - name: cefcFRUPowerAdminStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.1
+    type: gauge
+    help: Administratively desired FRU power state. - 1.3.6.1.4.1.9.9.117.1.1.2.1.1
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    enum_values:
+      1: "on"
+      2: "off"
+      3: inlineAuto
+      4: inlineOn
+      5: powerCycle
+  - name: cefcFRUPowerOperStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.2
+    type: gauge
+    help: Operational FRU power state. - 1.3.6.1.4.1.9.9.117.1.1.2.1.2
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    enum_values:
+      1: offEnvOther
+      2: "on"
+      3: offAdmin
+      4: offDenied
+      5: offEnvPower
+      6: offEnvTemp
+      7: offEnvFan
+      8: failed
+      9: onButFanFail
+      10: offCooling
+      11: offConnectorRating
+      12: onButInlinePowerFail
+  - name: cefcFRUCurrent
+    oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.3
+    type: gauge
+    help: Current supplied by the FRU (positive values) or current required to operate
+      the FRU (negative values). - 1.3.6.1.4.1.9.9.117.1.1.2.1.3
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+  - name: cefcFRUPowerCapability
+    oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.4
+    type: Bits
+    help: This object indicates the set of supported power capabilities of the FRU
+      - 1.3.6.1.4.1.9.9.117.1.1.2.1.4
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    enum_values:
+      0: realTimeCurrent
+  - name: cefcFRURealTimeCurrent
+    oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.5
+    type: gauge
+    help: This object indicates the realtime value of current supplied by the FRU
+      (positive values) or the realtime value of current drawn by the FRU (negative
+      values). - 1.3.6.1.4.1.9.9.117.1.1.2.1.5
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+  - name: cefcModuleAdminStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.1
+    type: gauge
+    help: This object provides administrative control of the module. - 1.3.6.1.4.1.9.9.117.1.2.1.1.1
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    enum_values:
+      1: enabled
+      2: disabled
+      3: reset
+      4: outOfServiceAdmin
+  - name: cefcModuleOperStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.2
+    type: gauge
+    help: This object shows the module's operational state. - 1.3.6.1.4.1.9.9.117.1.2.1.1.2
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    enum_values:
+      1: unknown
+      2: ok
+      3: disabled
+      4: okButDiagFailed
+      5: boot
+      6: selfTest
+      7: failed
+      8: missing
+      9: mismatchWithParent
+      10: mismatchConfig
+      11: diagFailed
+      12: dormant
+      13: outOfServiceAdmin
+      14: outOfServiceEnvTemp
+      15: poweredDown
+      16: poweredUp
+      17: powerDenied
+      18: powerCycled
+      19: okButPowerOverWarning
+      20: okButPowerOverCritical
+      21: syncInProgress
+      22: upgrading
+      23: okButAuthFailed
+      24: mdr
+      25: fwMismatchFound
+      26: fwDownloadSuccess
+      27: fwDownloadFailure
+  - name: cefcModuleResetReason
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.3
+    type: gauge
+    help: This object identifies the reason for the last reset performed on the module.
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.3
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    enum_values:
+      1: unknown
+      2: powerUp
+      3: parityError
+      4: clearConfigReset
+      5: manualReset
+      6: watchDogTimeoutReset
+      7: resourceOverflowReset
+      8: missingTaskReset
+      9: lowVoltageReset
+      10: controllerReset
+      11: systemReset
+      12: switchoverReset
+      13: upgradeReset
+      14: downgradeReset
+      15: cacheErrorReset
+      16: deviceDriverReset
+      17: softwareExceptionReset
+      18: restoreConfigReset
+      19: abortRevReset
+      20: burnBootReset
+      21: standbyCdHealthierReset
+      22: nonNativeConfigClearReset
+      23: memoryProtectionErrorReset
+  - name: cefcModuleStatusLastChangeTime
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.4
+    type: gauge
+    help: The value of sysUpTime at the time the cefcModuleOperStatus is changed.
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.4
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+  - name: cefcModuleLastClearConfigTime
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.5
+    type: gauge
+    help: The value of sysUpTime when the configuration was most recently cleared.
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.5
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+  - name: cefcModuleResetReasonDescription
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.6
+    type: DisplayString
+    help: A description qualifying the module reset reason specified in cefcModuleResetReason
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.6
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+  - name: cefcModuleStateChangeReasonDescr
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.7
+    type: DisplayString
+    help: This object displays human-readable textual string which describes the cause
+      of the last state change of the module - 1.3.6.1.4.1.9.9.117.1.2.1.1.7
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+  - name: cefcModuleUpTime
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.8
+    type: gauge
+    help: This object provides the up time for the module since it was last re-initialized
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.8
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+  - name: cefcVmModuleOperStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.9
+    type: gauge
+    help: This object indicates the VM module's operational state. - 1.3.6.1.4.1.9.9.117.1.2.1.1.9
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    enum_values:
+      1: down
+      2: up
+      3: unknown
+      4: goingDown
+  - name: cefcVmModuleStatusLastChangeTime
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.10
+    type: gauge
+    help: The value of sysUpTime at the time the cefcVmModuleOperStatus is changed.
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.10
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+  - name: cefcFanTrayOperStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.4.1.1.1
+    type: gauge
+    help: The operational state of the fan or fan tray - 1.3.6.1.4.1.9.9.117.1.4.1.1.1
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    enum_values:
+      1: unknown
+      2: up
+      3: down
+      4: warning
+  - name: cefcFanTrayDirection
+    oid: 1.3.6.1.4.1.9.9.117.1.4.1.1.2
+    type: gauge
+    help: The air flow direction of the fan or fan tray - 1.3.6.1.4.1.9.9.117.1.4.1.1.2
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    enum_values:
+      1: unknown
+      2: frontToBack
+      3: backToFront
+  - name: fcIfLinkFailures
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.1
+    type: counter
+    help: The number of link failures detected by the FC-Port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.1
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfSyncLosses
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.2
+    type: counter
+    help: The number of loss of synchronization failures detected by the FC-Port.
+      - 1.3.6.1.4.1.9.9.289.1.2.1.1.2
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfSigLosses
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.3
+    type: counter
+    help: The number of signal losses detected by the FC-Port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.3
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfPrimSeqProtoErrors
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.4
+    type: counter
+    help: The number of primitive sequence protocol errors detected by the FC-Port.
+      - 1.3.6.1.4.1.9.9.289.1.2.1.1.4
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfInvalidTxWords
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.5
+    type: counter
+    help: The number of invalid transmission words detected by the FC-Port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.5
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfInvalidCrcs
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.6
+    type: counter
+    help: The number of invalid CRCs detected by the FC-Port - 1.3.6.1.4.1.9.9.289.1.2.1.1.6
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfDelimiterErrors
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.7
+    type: counter
+    help: The number of Delimiter Errors detected by the FC-Port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.7
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfAddressIdErrors
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.8
+    type: counter
+    help: The number of address identifier errors detected by the FC-Port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.8
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfLinkResetIns
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.9
+    type: counter
+    help: The number of link reset protocol errors received by the FC-Port from the
+      attached FC-port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.9
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfLinkResetOuts
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.10
+    type: counter
+    help: The number of link reset protocol errors issued by the FC-Port to the attached
+      FC-Port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.10
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfOlsIns
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.11
+    type: counter
+    help: The number of Offline Sequence errors received by the FC-Port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.11
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfOlsOuts
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.12
+    type: counter
+    help: The number of Offline Sequence errors issued by the FC-Port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.12
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfRuntFramesIn
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.13
+    type: counter
+    help: The number of frames received by the FC-port that are shorter than the minimum
+      allowable frame length regardless if the CRC is good or not. - 1.3.6.1.4.1.9.9.289.1.2.1.1.13
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfJabberFramesIn
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.14
+    type: counter
+    help: The number of frames received by the FC-port that are longer than a maximum
+      frame length and also have a CRC error. - 1.3.6.1.4.1.9.9.289.1.2.1.1.14
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfTxWaitCount
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.15
+    type: counter
+    help: The number of times the FC-port waited due to lack of transmit credits.
+      - 1.3.6.1.4.1.9.9.289.1.2.1.1.15
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfFramesTooLong
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.16
+    type: counter
+    help: The number of frames received by the FC-port where the frame length was
+      greater than what was agreed to in FLOGI/PLOGI - 1.3.6.1.4.1.9.9.289.1.2.1.1.16
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfFramesTooShort
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.17
+    type: counter
+    help: The number of frames received by the FC-port where the frame length was
+      less than the minimum indicated by the frame header (normally 24 bytes), but
+      it could be more if the DFCTL field indicates an optional header should be present.
+      - 1.3.6.1.4.1.9.9.289.1.2.1.1.17
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfLRRIn
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.18
+    type: counter
+    help: The number of Link reset responses received by the FC-port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.18
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfLRROut
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.19
+    type: counter
+    help: The number of Link reset responses transmitted by the FC-port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.19
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfNOSIn
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.20
+    type: counter
+    help: The number of non-operational sequences received by the FC-port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.20
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfNOSOut
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.21
+    type: counter
+    help: The number of non-operational sequences transmitted by the FC-port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.21
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfFragFrames
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.22
+    type: counter
+    help: The number of fragmented frames received by the FC-port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.22
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfEOFaFrames
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.23
+    type: counter
+    help: The number of frames received by FC-port with EOF aborts. - 1.3.6.1.4.1.9.9.289.1.2.1.1.23
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfUnknownClassFrames
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.24
+    type: counter
+    help: The number of unknown class frames received by FC-port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.24
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIf8b10bDisparityErrors
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.25
+    type: counter
+    help: The number of 8b10b disparity errors. - 1.3.6.1.4.1.9.9.289.1.2.1.1.25
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfFramesDiscard
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.26
+    type: counter
+    help: The number of frames discarded by the FC-port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.26
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfELPFailures
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.27
+    type: counter
+    help: The number of Exchange Link Parameters Switch Fabric Internal Link service
+      request failures detected by the FC-Port - 1.3.6.1.4.1.9.9.289.1.2.1.1.27
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfBBCreditTransistionFromZero
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.28
+    type: counter
+    help: fcIfBBCreditTransistionFromZero increments if the transmit b2b credit is
+      zero - 1.3.6.1.4.1.9.9.289.1.2.1.1.28
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfEISLFramesDiscard
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.29
+    type: counter
+    help: The number of Enhanced Inter Switch Link (EISL) frames discarded by the
+      FC-port - 1.3.6.1.4.1.9.9.289.1.2.1.1.29
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfFramingErrorFrames
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.30
+    type: counter
+    help: The number of framing errors - 1.3.6.1.4.1.9.9.289.1.2.1.1.30
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfLipF8In
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.31
+    type: counter
+    help: The number of 'F8' (LIP(F8,x)) type of Loop failures - Loop Initialization
+      Primitive Sequence (LIP) errors received by the FC-Port from the attached FC-port.
+      - 1.3.6.1.4.1.9.9.289.1.2.1.1.31
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfLipF8Out
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.32
+    type: counter
+    help: The number of 'F8' (LIP(F8,x)) type of Loop failures - Loop Initialization
+      Primitive Sequence (LIP) errors issued by the FC-Port to the attached FC-Port.
+      - 1.3.6.1.4.1.9.9.289.1.2.1.1.32
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfNonLipF8In
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.33
+    type: counter
+    help: The number of Non 'F8' (LIP(F8,x)) type of Loop failures - Loop Initialization
+      Primitive Sequence (LIP) errors received by the FC-Port from the attached FC-port.
+      - 1.3.6.1.4.1.9.9.289.1.2.1.1.33
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfNonLipF8Out
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.34
+    type: counter
+    help: The number of Non 'F8' (LIP(F8,x)) type of Loop failures - Loop Initialization
+      Primitive Sequence (LIP) errors issued by the FC-Port to the attached FC-Port.
+      - 1.3.6.1.4.1.9.9.289.1.2.1.1.34
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfTimeOutDiscards
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.35
+    type: counter
+    help: The number of packets that are dropped due to time-out at the FC-port or
+      due to the FC-port going offline. - 1.3.6.1.4.1.9.9.289.1.2.1.1.35
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfOutDiscards
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.36
+    type: counter
+    help: The total number of packets that are discarded in the egress side of the
+      FC-port. - 1.3.6.1.4.1.9.9.289.1.2.1.1.36
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfCreditLoss
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.37
+    type: counter
+    help: The number of link reset has occurred due to unavailable credits from the
+      peer side of the link. - 1.3.6.1.4.1.9.9.289.1.2.1.1.37
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfTxWtAvgBBCreditTransitionToZero
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.38
+    type: counter
+    help: fcIfTxWtAvgBBCreditTransitionToZero increments if the credit available is
+      zero for 100 ms. - 1.3.6.1.4.1.9.9.289.1.2.1.1.38
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfBBCreditTransistionToZero
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.39
+    type: counter
+    help: fcIfBBCreditTransistionToZero increments if the receive b2b credit is zero
+      - 1.3.6.1.4.1.9.9.289.1.2.1.1.39
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcHCIfBBCreditTransistionFromZero
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.40
+    type: counter
+    help: fcHCIfBBCreditTransistionFromZero increments if the transmit b2b credit
+      is zero. - 1.3.6.1.4.1.9.9.289.1.2.1.1.40
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcHCIfBBCreditTransistionToZero
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.41
+    type: counter
+    help: fcHCIfBBCreditTransistionToZero increments if the receive b2b credit is
+      zero. - 1.3.6.1.4.1.9.9.289.1.2.1.1.41
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfFECCorrectedBlks
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.42
+    type: counter
+    help: The number of blocks corrected by FEC decoder. - 1.3.6.1.4.1.9.9.289.1.2.1.1.42
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfFECUncorrectedBlks
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.43
+    type: counter
+    help: The number of blocks FEC decoder was unable to correct. - 1.3.6.1.4.1.9.9.289.1.2.1.1.43
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfSlowPortCount
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.44
+    type: counter
+    help: This object indicates number of times slowport event(transmit credits not
+      available) condition detected for the timeout value configured in fcIffPortSlowportMonitorTimeout
+      (for mode F) or fcIfePortSlowportMonitorTimeout (for mode E) object. - 1.3.6.1.4.1.9.9.289.1.2.1.1.44
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfSlowPortOperDelay
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.45
+    type: gauge
+    help: This object indicates the maximum operational credit delay experienced by
+      the port at any given time - 1.3.6.1.4.1.9.9.289.1.2.1.1.45
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfStateChangeCount
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.46
+    type: counter
+    help: This object indicates the number of times that port had been changed its
+      state from down to up. - 1.3.6.1.4.1.9.9.289.1.2.1.1.46
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcHCIfTxWaitCount
+    oid: 1.3.6.1.4.1.9.9.289.1.2.1.1.47
+    type: counter
+    help: The number of times the FC-port waited due to lack of transmit credits -
+      1.3.6.1.4.1.9.9.289.1.2.1.1.47
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfC3InFrames
+    oid: 1.3.6.1.4.1.9.9.289.1.2.3.1.1
+    type: counter
+    help: The number of Class 3 frames received by this port from its attached Nx_Port.
+      - 1.3.6.1.4.1.9.9.289.1.2.3.1.1
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfC3OutFrames
+    oid: 1.3.6.1.4.1.9.9.289.1.2.3.1.2
+    type: counter
+    help: The number of Class 3 frames transmitted by this port to its attached Nx_Port.
+      - 1.3.6.1.4.1.9.9.289.1.2.3.1.2
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfC3InOctets
+    oid: 1.3.6.1.4.1.9.9.289.1.2.3.1.3
+    type: counter
+    help: The number of Class 3 frame octets, including the frame delimiters, received
+      by this port from its attached Nx_Port. - 1.3.6.1.4.1.9.9.289.1.2.3.1.3
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfC3OutOctets
+    oid: 1.3.6.1.4.1.9.9.289.1.2.3.1.4
+    type: counter
+    help: The number of Class 3 frame octets, including the frame delimiters, transmitted
+      by this port to its a attached Nx_Port. - 1.3.6.1.4.1.9.9.289.1.2.3.1.4
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: fcIfC3Discards
+    oid: 1.3.6.1.4.1.9.9.289.1.2.3.1.5
+    type: counter
+    help: The number of Class 3 frames discarded by this port. - 1.3.6.1.4.1.9.9.289.1.2.3.1.5
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: entSensorValue
+    oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.4
+    type: gauge
+    help: This variable reports the most recent measurement seen by the sensor - 1.3.6.1.4.1.9.9.91.1.1.1.1.4
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+  retries: 1
+mx:
+  walk:
+  - 1.3.6.1.2.1.15.3.1.15
+  - 1.3.6.1.2.1.15.3.1.2
+  - 1.3.6.1.2.1.2.2.1.14
+  - 1.3.6.1.2.1.2.2.1.3
+  - 1.3.6.1.2.1.31.1.1.1.1
+  - 1.3.6.1.2.1.31.1.1.1.10
+  - 1.3.6.1.2.1.31.1.1.1.6
+  - 1.3.6.1.4.1.2636.3.1.13.1.6
+  - 1.3.6.1.4.1.2636.3.5.2.1.4
+  - 1.3.6.1.4.1.2636.3.5.2.1.5
+  get:
+  - 1.3.6.1.2.1.1.3.0
+  metrics:
+  - name: sysUpTime
+    oid: 1.3.6.1.2.1.1.3
+    type: gauge
+    help: The time (in hundredths of a second) since the network management portion
+      of the system was last re-initialized. - 1.3.6.1.2.1.1.3
+  - name: bgpPeerFsmEstablishedTransitions
+    oid: 1.3.6.1.2.1.15.3.1.15
+    type: counter
+    help: The total number of times the BGP FSM transitioned into the established
+      state. - 1.3.6.1.2.1.15.3.1.15
+    indexes:
+    - labelname: bgpPeerRemoteAddr
+      type: InetAddressIPv4
+  - name: bgpPeerState
+    oid: 1.3.6.1.2.1.15.3.1.2
+    type: gauge
+    help: The BGP peer connection state. - 1.3.6.1.2.1.15.3.1.2
+    indexes:
+    - labelname: bgpPeerRemoteAddr
+      type: InetAddressIPv4
+    enum_values:
+      1: idle
+      2: connect
+      3: active
+      4: opensent
+      5: openconfirm
+      6: established
+  - name: ifInErrors
+    oid: 1.3.6.1.2.1.2.2.1.14
+    type: counter
+    help: For packet-oriented interfaces, the number of inbound packets that contained
+      errors preventing them from being deliverable to a higher-layer protocol - 1.3.6.1.2.1.2.2.1.14
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCOutOctets
+    oid: 1.3.6.1.2.1.31.1.1.1.10
+    type: counter
+    help: The total number of octets transmitted out of the interface, including framing
+      characters - 1.3.6.1.2.1.31.1.1.1.10
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCInOctets
+    oid: 1.3.6.1.2.1.31.1.1.1.6
+    type: counter
+    help: The total number of octets received on the interface, including framing
+      characters - 1.3.6.1.2.1.31.1.1.1.6
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: jnxOperatingState
+    oid: 1.3.6.1.4.1.2636.3.1.13.1.6
+    type: gauge
+    help: The operating state of this subject. - 1.3.6.1.4.1.2636.3.1.13.1.6
+    indexes:
+    - labelname: jnxOperatingContentsIndex
+      type: gauge
+    - labelname: jnxOperatingL1Index
+      type: gauge
+    - labelname: jnxOperatingL2Index
+      type: gauge
+    - labelname: jnxOperatingL3Index
+      type: gauge
+    enum_values:
+      1: unknown
+      2: running
+      3: ready
+      4: reset
+      5: runningAtFullSpeed
+      6: down
+      7: standby
+  - name: jnxFWCounterPacketCount
+    oid: 1.3.6.1.4.1.2636.3.5.2.1.4
+    type: counter
+    help: The number of packets being counted pertaining to the specified counter
+      or policer. - 1.3.6.1.4.1.2636.3.5.2.1.4
+    indexes:
+    - labelname: jnxFWCounterFilterName
+      type: DisplayString
+    - labelname: jnxFWCounterName
+      type: DisplayString
+    - labelname: jnxFWCounterType
+      type: gauge
+      enum_values:
+        1: other
+        2: counter
+        3: policer
+        4: hpolagg
+        5: hpolpre
+  - name: jnxFWCounterByteCount
+    oid: 1.3.6.1.4.1.2636.3.5.2.1.5
+    type: counter
+    help: The number of bytes being counted pertaining to the specified counter -
+      1.3.6.1.4.1.2636.3.5.2.1.5
+    indexes:
+    - labelname: jnxFWCounterFilterName
+      type: DisplayString
+    - labelname: jnxFWCounterName
+      type: DisplayString
+    - labelname: jnxFWCounterType
+      type: gauge
+      enum_values:
+        1: other
+        2: counter
+        3: policer
+        4: hpolagg
+        5: hpolpre
+  retries: 1
+n3k:
+  walk:
+  - 1.3.6.1.2.1.10.7.10
+  - 1.3.6.1.2.1.15.3.1.15
+  - 1.3.6.1.2.1.15.3.1.2
+  - 1.3.6.1.2.1.2.2.1.14
+  - 1.3.6.1.2.1.2.2.1.19
+  - 1.3.6.1.2.1.2.2.1.3
+  - 1.3.6.1.2.1.2.2.1.7
+  - 1.3.6.1.2.1.2.2.1.8
+  - 1.3.6.1.2.1.2.2.1.9
+  - 1.3.6.1.2.1.31.1.1.1.1
+  - 1.3.6.1.2.1.31.1.1.1.10
+  - 1.3.6.1.2.1.31.1.1.1.11
+  - 1.3.6.1.2.1.31.1.1.1.15
+  - 1.3.6.1.2.1.31.1.1.1.6
+  - 1.3.6.1.2.1.31.1.1.1.7
+  - 1.3.6.1.2.1.47.1.1.1.1.2
+  - 1.3.6.1.4.1.9.9.109.1.1.1.1.12
+  - 1.3.6.1.4.1.9.9.109.1.1.1.1.13
+  - 1.3.6.1.4.1.9.9.109.1.1.1.1.7
+  - 1.3.6.1.4.1.9.9.117.1.1.2
+  - 1.3.6.1.4.1.9.9.117.1.2.1
+  - 1.3.6.1.4.1.9.9.117.1.4.1
+  - 1.3.6.1.4.1.9.9.42.1.2.10.1.2
+  - 1.3.6.1.4.1.9.9.91.1.1.1.1.4
+  - 1.3.6.1.4.1.9.9.91.1.1.1.1.5
+  get:
+  - 1.3.6.1.2.1.1.3.0
+  metrics:
+  - name: sysUpTime
+    oid: 1.3.6.1.2.1.1.3
+    type: gauge
+    help: The time (in hundredths of a second) since the network management portion
+      of the system was last re-initialized. - 1.3.6.1.2.1.1.3
+  - name: dot3PauseAdminMode
+    oid: 1.3.6.1.2.1.10.7.10.1.1
+    type: gauge
+    help: This object is used to configure the default administrative PAUSE mode for
+      this interface - 1.3.6.1.2.1.10.7.10.1.1
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
+    lookups:
+    - labels:
+      - dot3StatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels: []
+      labelname: dot3StatsIndex
+    enum_values:
+      1: disabled
+      2: enabledXmit
+      3: enabledRcv
+      4: enabledXmitAndRcv
+  - name: dot3PauseOperMode
+    oid: 1.3.6.1.2.1.10.7.10.1.2
+    type: gauge
+    help: This object reflects the PAUSE mode currently in use on this interface,
+      as determined by either (1) the result of the auto-negotiation function or (2)
+      if auto-negotiation is not enabled or is not implemented for the active MAU
+      attached to this interface, by the value of dot3PauseAdminMode - 1.3.6.1.2.1.10.7.10.1.2
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
+    lookups:
+    - labels:
+      - dot3StatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels: []
+      labelname: dot3StatsIndex
+    enum_values:
+      1: disabled
+      2: enabledXmit
+      3: enabledRcv
+      4: enabledXmitAndRcv
+  - name: dot3InPauseFrames
+    oid: 1.3.6.1.2.1.10.7.10.1.3
+    type: counter
+    help: A count of MAC Control frames received on this interface with an opcode
+      indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.3
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
+    lookups:
+    - labels:
+      - dot3StatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels: []
+      labelname: dot3StatsIndex
+  - name: dot3OutPauseFrames
+    oid: 1.3.6.1.2.1.10.7.10.1.4
+    type: counter
+    help: A count of MAC Control frames transmitted on this interface with an opcode
+      indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.4
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
+    lookups:
+    - labels:
+      - dot3StatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels: []
+      labelname: dot3StatsIndex
+  - name: dot3HCInPauseFrames
+    oid: 1.3.6.1.2.1.10.7.10.1.5
+    type: counter
+    help: A count of MAC Control frames received on this interface with an opcode
+      indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.5
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
+    lookups:
+    - labels:
+      - dot3StatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels: []
+      labelname: dot3StatsIndex
+  - name: dot3HCOutPauseFrames
+    oid: 1.3.6.1.2.1.10.7.10.1.6
+    type: counter
+    help: A count of MAC Control frames transmitted on this interface with an opcode
+      indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.6
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
+    lookups:
+    - labels:
+      - dot3StatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels: []
+      labelname: dot3StatsIndex
+  - name: bgpPeerFsmEstablishedTransitions
+    oid: 1.3.6.1.2.1.15.3.1.15
+    type: counter
+    help: The total number of times the BGP FSM transitioned into the established
+      state. - 1.3.6.1.2.1.15.3.1.15
+    indexes:
+    - labelname: bgpPeerRemoteAddr
+      type: InetAddressIPv4
+  - name: bgpPeerState
+    oid: 1.3.6.1.2.1.15.3.1.2
+    type: gauge
+    help: The BGP peer connection state. - 1.3.6.1.2.1.15.3.1.2
+    indexes:
+    - labelname: bgpPeerRemoteAddr
+      type: InetAddressIPv4
+    enum_values:
+      1: idle
+      2: connect
+      3: active
+      4: opensent
+      5: openconfirm
+      6: established
+  - name: ifInErrors
+    oid: 1.3.6.1.2.1.2.2.1.14
+    type: counter
+    help: For packet-oriented interfaces, the number of inbound packets that contained
+      errors preventing them from being deliverable to a higher-layer protocol - 1.3.6.1.2.1.2.2.1.14
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifOutDiscards
+    oid: 1.3.6.1.2.1.2.2.1.19
+    type: counter
+    help: The number of outbound packets which were chosen to be discarded even though
+      no errors had been detected to prevent their being transmitted - 1.3.6.1.2.1.2.2.1.19
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifAdminStatus
+    oid: 1.3.6.1.2.1.2.2.1.7
+    type: gauge
+    help: The desired state of the interface - 1.3.6.1.2.1.2.2.1.7
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+    enum_values:
+      1: up
+      2: down
+      3: testing
+  - name: ifOperStatus
+    oid: 1.3.6.1.2.1.2.2.1.8
+    type: gauge
+    help: The current operational state of the interface - 1.3.6.1.2.1.2.2.1.8
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+    enum_values:
+      1: up
+      2: down
+      3: testing
+      4: unknown
+      5: dormant
+      6: notPresent
+      7: lowerLayerDown
+  - name: ifLastChange
+    oid: 1.3.6.1.2.1.2.2.1.9
+    type: gauge
+    help: The value of sysUpTime at the time the interface entered its current operational
+      state - 1.3.6.1.2.1.2.2.1.9
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCOutOctets
+    oid: 1.3.6.1.2.1.31.1.1.1.10
+    type: counter
+    help: The total number of octets transmitted out of the interface, including framing
+      characters - 1.3.6.1.2.1.31.1.1.1.10
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCOutUcastPkts
+    oid: 1.3.6.1.2.1.31.1.1.1.11
+    type: counter
+    help: The total number of packets that higher-level protocols requested be transmitted,
+      and which were not addressed to a multicast or broadcast address at this sub-layer,
+      including those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.11
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHighSpeed
+    oid: 1.3.6.1.2.1.31.1.1.1.15
+    type: gauge
+    help: An estimate of the interface's current bandwidth in units of 1,000,000 bits
+      per second - 1.3.6.1.2.1.31.1.1.1.15
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCInOctets
+    oid: 1.3.6.1.2.1.31.1.1.1.6
+    type: counter
+    help: The total number of octets received on the interface, including framing
+      characters - 1.3.6.1.2.1.31.1.1.1.6
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCInUcastPkts
+    oid: 1.3.6.1.2.1.31.1.1.1.7
+    type: counter
+    help: The number of packets, delivered by this sub-layer to a higher (sub-)layer,
+      which were not addressed to a multicast or broadcast address at this sub-layer
+      - 1.3.6.1.2.1.31.1.1.1.7
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: cpmCPUMemoryUsed
+    oid: 1.3.6.1.4.1.9.9.109.1.1.1.1.12
+    type: gauge
+    help: The overall CPU wide system memory which is currently under use. - 1.3.6.1.4.1.9.9.109.1.1.1.1.12
+    indexes:
+    - labelname: cpmCPUTotalIndex
+      type: gauge
+  - name: cpmCPUMemoryFree
+    oid: 1.3.6.1.4.1.9.9.109.1.1.1.1.13
+    type: gauge
+    help: The overall CPU wide system memory which is currently free. - 1.3.6.1.4.1.9.9.109.1.1.1.1.13
+    indexes:
+    - labelname: cpmCPUTotalIndex
+      type: gauge
+  - name: cpmCPUTotal1minRev
+    oid: 1.3.6.1.4.1.9.9.109.1.1.1.1.7
+    type: gauge
+    help: The overall CPU busy percentage in the last 1 minute period - 1.3.6.1.4.1.9.9.109.1.1.1.1.7
+    indexes:
+    - labelname: cpmCPUTotalIndex
+      type: gauge
+  - name: cefcFRUPowerAdminStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.1
+    type: gauge
+    help: Administratively desired FRU power state. - 1.3.6.1.4.1.9.9.117.1.1.2.1.1
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+    enum_values:
+      1: "on"
+      2: "off"
+      3: inlineAuto
+      4: inlineOn
+      5: powerCycle
+  - name: cefcFRUPowerOperStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.2
+    type: gauge
+    help: Operational FRU power state. - 1.3.6.1.4.1.9.9.117.1.1.2.1.2
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+    enum_values:
+      1: offEnvOther
+      2: "on"
+      3: offAdmin
+      4: offDenied
+      5: offEnvPower
+      6: offEnvTemp
+      7: offEnvFan
+      8: failed
+      9: onButFanFail
+      10: offCooling
+      11: offConnectorRating
+      12: onButInlinePowerFail
+  - name: cefcFRUCurrent
+    oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.3
+    type: gauge
+    help: Current supplied by the FRU (positive values) or current required to operate
+      the FRU (negative values). - 1.3.6.1.4.1.9.9.117.1.1.2.1.3
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+  - name: cefcFRUPowerCapability
+    oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.4
+    type: Bits
+    help: This object indicates the set of supported power capabilities of the FRU
+      - 1.3.6.1.4.1.9.9.117.1.1.2.1.4
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+    enum_values:
+      0: realTimeCurrent
+  - name: cefcFRURealTimeCurrent
+    oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.5
+    type: gauge
+    help: This object indicates the realtime value of current supplied by the FRU
+      (positive values) or the realtime value of current drawn by the FRU (negative
+      values). - 1.3.6.1.4.1.9.9.117.1.1.2.1.5
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+  - name: cefcModuleAdminStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.1
+    type: gauge
+    help: This object provides administrative control of the module. - 1.3.6.1.4.1.9.9.117.1.2.1.1.1
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+    enum_values:
+      1: enabled
+      2: disabled
+      3: reset
+      4: outOfServiceAdmin
+  - name: cefcModuleOperStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.2
+    type: gauge
+    help: This object shows the module's operational state. - 1.3.6.1.4.1.9.9.117.1.2.1.1.2
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+    enum_values:
+      1: unknown
+      2: ok
+      3: disabled
+      4: okButDiagFailed
+      5: boot
+      6: selfTest
+      7: failed
+      8: missing
+      9: mismatchWithParent
+      10: mismatchConfig
+      11: diagFailed
+      12: dormant
+      13: outOfServiceAdmin
+      14: outOfServiceEnvTemp
+      15: poweredDown
+      16: poweredUp
+      17: powerDenied
+      18: powerCycled
+      19: okButPowerOverWarning
+      20: okButPowerOverCritical
+      21: syncInProgress
+      22: upgrading
+      23: okButAuthFailed
+      24: mdr
+      25: fwMismatchFound
+      26: fwDownloadSuccess
+      27: fwDownloadFailure
+  - name: cefcModuleResetReason
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.3
+    type: gauge
+    help: This object identifies the reason for the last reset performed on the module.
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.3
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+    enum_values:
+      1: unknown
+      2: powerUp
+      3: parityError
+      4: clearConfigReset
+      5: manualReset
+      6: watchDogTimeoutReset
+      7: resourceOverflowReset
+      8: missingTaskReset
+      9: lowVoltageReset
+      10: controllerReset
+      11: systemReset
+      12: switchoverReset
+      13: upgradeReset
+      14: downgradeReset
+      15: cacheErrorReset
+      16: deviceDriverReset
+      17: softwareExceptionReset
+      18: restoreConfigReset
+      19: abortRevReset
+      20: burnBootReset
+      21: standbyCdHealthierReset
+      22: nonNativeConfigClearReset
+      23: memoryProtectionErrorReset
+  - name: cefcModuleStatusLastChangeTime
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.4
+    type: gauge
+    help: The value of sysUpTime at the time the cefcModuleOperStatus is changed.
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.4
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+  - name: cefcModuleLastClearConfigTime
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.5
+    type: gauge
+    help: The value of sysUpTime when the configuration was most recently cleared.
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.5
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+  - name: cefcModuleResetReasonDescription
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.6
+    type: DisplayString
+    help: A description qualifying the module reset reason specified in cefcModuleResetReason
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.6
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+  - name: cefcModuleStateChangeReasonDescr
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.7
+    type: DisplayString
+    help: This object displays human-readable textual string which describes the cause
+      of the last state change of the module - 1.3.6.1.4.1.9.9.117.1.2.1.1.7
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+  - name: cefcModuleUpTime
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.8
+    type: gauge
+    help: This object provides the up time for the module since it was last re-initialized
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.8
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+  - name: cefcVmModuleOperStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.9
+    type: gauge
+    help: This object indicates the VM module's operational state. - 1.3.6.1.4.1.9.9.117.1.2.1.1.9
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+    enum_values:
+      1: down
+      2: up
+      3: unknown
+      4: goingDown
+  - name: cefcVmModuleStatusLastChangeTime
+    oid: 1.3.6.1.4.1.9.9.117.1.2.1.1.10
+    type: gauge
+    help: The value of sysUpTime at the time the cefcVmModuleOperStatus is changed.
+      - 1.3.6.1.4.1.9.9.117.1.2.1.1.10
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+  - name: cefcFanTrayOperStatus
+    oid: 1.3.6.1.4.1.9.9.117.1.4.1.1.1
+    type: gauge
+    help: The operational state of the fan or fan tray - 1.3.6.1.4.1.9.9.117.1.4.1.1.1
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+    enum_values:
+      1: unknown
+      2: up
+      3: down
+      4: warning
+  - name: cefcFanTrayDirection
+    oid: 1.3.6.1.4.1.9.9.117.1.4.1.1.2
+    type: gauge
+    help: The air flow direction of the fan or fan tray - 1.3.6.1.4.1.9.9.117.1.4.1.1.2
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+    enum_values:
+      1: unknown
+      2: frontToBack
+      3: backToFront
+  - name: rttMonLatestRttOperSense
+    oid: 1.3.6.1.4.1.9.9.42.1.2.10.1.2
+    type: gauge
+    help: A sense code for the completion status of the latest RTT operation. - 1.3.6.1.4.1.9.9.42.1.2.10.1.2
+    indexes:
+    - labelname: rttMonCtrlAdminIndex
+      type: gauge
+    enum_values:
+      0: other
+      1: ok
+      2: disconnected
+      3: overThreshold
+      4: timeout
+      5: busy
+      6: notConnected
+      7: dropped
+      8: sequenceError
+      9: verifyError
+      10: applicationSpecific
+      11: dnsServerTimeout
+      12: tcpConnectTimeout
+      13: httpTransactionTimeout
+      14: dnsQueryError
+      15: httpError
+      16: error
+      17: mplsLspEchoTxError
+      18: mplsLspUnreachable
+      19: mplsLspMalformedReq
+      20: mplsLspReachButNotFEC
+      21: enableOk
+      22: enableNoConnect
+      23: enableVersionFail
+      24: enableInternalError
+      25: enableAbort
+      26: enableFail
+      27: enableAuthFail
+      28: enableFormatError
+      29: enablePortInUse
+      30: statsRetrieveOk
+      31: statsRetrieveNoConnect
+      32: statsRetrieveVersionFail
+      33: statsRetrieveInternalError
+      34: statsRetrieveAbort
+      35: statsRetrieveFail
+      36: statsRetrieveAuthFail
+      37: statsRetrieveFormatError
+      38: statsRetrievePortInUse
+  - name: entSensorValue
+    oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.4
+    type: gauge
+    help: This variable reports the most recent measurement seen by the sensor - 1.3.6.1.4.1.9.9.91.1.1.1.1.4
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    - labels: []
+      labelname: entPhysicalIndex
+  retries: 1
+switch:
+  walk:
+  - 1.3.6.1.2.1.2.2.1.14
+  - 1.3.6.1.2.1.2.2.1.19
+  - 1.3.6.1.2.1.2.2.1.3
+  - 1.3.6.1.2.1.2.2.1.8
+  - 1.3.6.1.2.1.31.1.1.1.1
+  - 1.3.6.1.2.1.31.1.1.1.10
+  - 1.3.6.1.2.1.31.1.1.1.11
+  - 1.3.6.1.2.1.31.1.1.1.15
+  - 1.3.6.1.2.1.31.1.1.1.6
+  - 1.3.6.1.2.1.31.1.1.1.7
+  get:
+  - 1.3.6.1.2.1.1.3.0
+  metrics:
+  - name: sysUpTime
+    oid: 1.3.6.1.2.1.1.3
+    type: gauge
+    help: The time (in hundredths of a second) since the network management portion
+      of the system was last re-initialized. - 1.3.6.1.2.1.1.3
+  - name: ifInErrors
+    oid: 1.3.6.1.2.1.2.2.1.14
+    type: counter
+    help: For packet-oriented interfaces, the number of inbound packets that contained
+      errors preventing them from being deliverable to a higher-layer protocol - 1.3.6.1.2.1.2.2.1.14
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifOutDiscards
+    oid: 1.3.6.1.2.1.2.2.1.19
+    type: counter
+    help: The number of outbound packets which were chosen to be discarded even though
+      no errors had been detected to prevent their being transmitted - 1.3.6.1.2.1.2.2.1.19
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifOperStatus
+    oid: 1.3.6.1.2.1.2.2.1.8
+    type: gauge
+    help: The current operational state of the interface - 1.3.6.1.2.1.2.2.1.8
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+    enum_values:
+      1: up
+      2: down
+      3: testing
+      4: unknown
+      5: dormant
+      6: notPresent
+      7: lowerLayerDown
+  - name: ifHCOutOctets
+    oid: 1.3.6.1.2.1.31.1.1.1.10
+    type: counter
+    help: The total number of octets transmitted out of the interface, including framing
+      characters - 1.3.6.1.2.1.31.1.1.1.10
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCOutUcastPkts
+    oid: 1.3.6.1.2.1.31.1.1.1.11
+    type: counter
+    help: The total number of packets that higher-level protocols requested be transmitted,
+      and which were not addressed to a multicast or broadcast address at this sub-layer,
+      including those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.11
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHighSpeed
+    oid: 1.3.6.1.2.1.31.1.1.1.15
+    type: gauge
+    help: An estimate of the interface's current bandwidth in units of 1,000,000 bits
+      per second - 1.3.6.1.2.1.31.1.1.1.15
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCInOctets
+    oid: 1.3.6.1.2.1.31.1.1.1.6
+    type: counter
+    help: The total number of octets received on the interface, including framing
+      characters - 1.3.6.1.2.1.31.1.1.1.6
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  - name: ifHCInUcastPkts
+    oid: 1.3.6.1.2.1.31.1.1.1.7
+    type: counter
+    help: The number of packets, delivered by this sub-layer to a higher (sub-)layer,
+      which were not addressed to a multicast or broadcast address at this sub-layer
+      - 1.3.6.1.2.1.31.1.1.1.7
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
+  retries: 1

@@ -1,0 +1,33 @@
+---
+- block:
+
+    - name: "Ensure existense of /tmp/snmp_exporter-v{{ snmp_exporter_version }}"
+      ansible.builtin.file:
+        path: "/tmp/snmp_exporter-v{{ snmp_exporter_version }}"
+        state: directory
+
+    - name: Unarchive snmp_exporter
+      become: false
+      unarchive:
+        src: "{{ snmp_exporter_repo_dir }}/snmp_exporter-{{ snmp_exporter_version }}.linux-amd64.tar.gz"
+        dest: "/tmp/snmp_exporter-v{{ snmp_exporter_version }}"
+        creates: "/tmp/snmp_exporter-v{{ snmp_exporter_version }}/snmp_exporter-{{ snmp_exporter_version }}.linux-amd64/snmp_exporter"
+      check_mode: false
+
+    - name: "Copy snmp_exporter to {{ snmp_exporter_install_dir }}"
+      ansible.builtin.copy:
+        src: "/tmp/snmp_exporter-v{{ snmp_exporter_version }}/snmp_exporter-{{ snmp_exporter_version }}.linux-amd64/snmp_exporter"
+        dest: "{{ snmp_exporter_install_dir }}/snmp_exporter"
+        owner: root
+        group: root
+        mode: 0755
+        remote_src: yes
+      notify: restart snmp_exporter
+
+- name: create config directory
+  file:
+    path: /etc/snmp_exporter
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
