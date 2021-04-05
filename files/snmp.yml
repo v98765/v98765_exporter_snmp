@@ -19,6 +19,7 @@ exos:
   - 1.3.6.1.4.1.1916.1.1.1.9
   - 1.3.6.1.4.1.1916.1.32.1.4.1.8
   - 1.3.6.1.4.1.1916.1.32.2.2
+  - 1.3.6.1.4.1.1916.1.4.14.1.1
   get:
   - 1.3.6.1.2.1.1.3.0
   - 1.3.6.1.4.1.1916.1.1.1.7.0
@@ -393,6 +394,26 @@ exos:
       "":
       - value: $1
         regex: ^(?:(.*))$
+  - name: extremePortCongDropPkts
+    oid: 1.3.6.1.4.1.1916.1.4.14.1.1
+    type: counter
+    help: The number of packets dropped due to congestion on this port - 1.3.6.1.4.1.1916.1.4.14.1.1
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifType
+      oid: 1.3.6.1.2.1.2.2.1.3
+      type: gauge
+    - labels: []
+      labelname: ifIndex
   retries: 1
 mds9k:
   walk:
