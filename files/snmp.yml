@@ -1,6 +1,7 @@
 # WARNING: This file was auto-generated using snmp_exporter generator, manual changes will be lost.
 exos:
   walk:
+  - 1.3.6.1.2.1.10.7.10
   - 1.3.6.1.2.1.15.3.1.15
   - 1.3.6.1.2.1.15.3.1.2
   - 1.3.6.1.2.1.2.2.1.14
@@ -30,6 +31,66 @@ exos:
     type: gauge
     help: The time (in hundredths of a second) since the network management portion
       of the system was last re-initialized. - 1.3.6.1.2.1.1.3
+  - name: dot3PauseAdminMode
+    oid: 1.3.6.1.2.1.10.7.10.1.1
+    type: gauge
+    help: This object is used to configure the default administrative PAUSE mode for
+      this interface - 1.3.6.1.2.1.10.7.10.1.1
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
+    enum_values:
+      1: disabled
+      2: enabledXmit
+      3: enabledRcv
+      4: enabledXmitAndRcv
+  - name: dot3PauseOperMode
+    oid: 1.3.6.1.2.1.10.7.10.1.2
+    type: gauge
+    help: This object reflects the PAUSE mode currently in use on this interface,
+      as determined by either (1) the result of the auto-negotiation function or (2)
+      if auto-negotiation is not enabled or is not implemented for the active MAU
+      attached to this interface, by the value of dot3PauseAdminMode - 1.3.6.1.2.1.10.7.10.1.2
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
+    enum_values:
+      1: disabled
+      2: enabledXmit
+      3: enabledRcv
+      4: enabledXmitAndRcv
+  - name: dot3InPauseFrames
+    oid: 1.3.6.1.2.1.10.7.10.1.3
+    type: counter
+    help: A count of MAC Control frames received on this interface with an opcode
+      indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.3
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
+  - name: dot3OutPauseFrames
+    oid: 1.3.6.1.2.1.10.7.10.1.4
+    type: counter
+    help: A count of MAC Control frames transmitted on this interface with an opcode
+      indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.4
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
+  - name: dot3HCInPauseFrames
+    oid: 1.3.6.1.2.1.10.7.10.1.5
+    type: counter
+    help: A count of MAC Control frames received on this interface with an opcode
+      indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.5
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
+  - name: dot3HCOutPauseFrames
+    oid: 1.3.6.1.2.1.10.7.10.1.6
+    type: counter
+    help: A count of MAC Control frames transmitted on this interface with an opcode
+      indicating the PAUSE operation - 1.3.6.1.2.1.10.7.10.1.6
+    indexes:
+    - labelname: dot3StatsIndex
+      type: gauge
   - name: bgpPeerFsmEstablishedTransitions
     oid: 1.3.6.1.2.1.15.3.1.15
     type: counter
