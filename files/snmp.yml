@@ -1,4 +1,95 @@
 # WARNING: This file was auto-generated using snmp_exporter generator, manual changes will be lost.
+esxi:
+  walk:
+  - 1.3.6.1.2.1.25.2.3.1.2
+  - 1.3.6.1.2.1.25.2.3.1.5
+  - 1.3.6.1.2.1.25.2.3.1.6
+  - 1.3.6.1.2.1.25.3.3
+  - 1.3.6.1.2.1.25.4.2.1.2
+  - 1.3.6.1.2.1.25.4.2.1.7
+  - 1.3.6.1.2.1.25.5.1.1.2
+  get:
+  - 1.3.6.1.2.1.25.1.1.0
+  metrics:
+  - name: hrSystemUptime
+    oid: 1.3.6.1.2.1.25.1.1
+    type: gauge
+    help: The amount of time since this host was last initialized - 1.3.6.1.2.1.25.1.1
+  - name: hrStorageSize
+    oid: 1.3.6.1.2.1.25.2.3.1.5
+    type: gauge
+    help: The size of the storage represented by this entry, in units of hrStorageAllocationUnits
+      - 1.3.6.1.2.1.25.2.3.1.5
+    indexes:
+    - labelname: hrStorageIndex
+      type: gauge
+    lookups:
+    - labels:
+      - hrStorageIndex
+      labelname: hrStorageType
+      oid: 1.3.6.1.2.1.25.2.3.1.2
+      type: OctetString
+  - name: hrStorageUsed
+    oid: 1.3.6.1.2.1.25.2.3.1.6
+    type: gauge
+    help: The amount of the storage represented by this entry that is allocated, in
+      units of hrStorageAllocationUnits. - 1.3.6.1.2.1.25.2.3.1.6
+    indexes:
+    - labelname: hrStorageIndex
+      type: gauge
+    lookups:
+    - labels:
+      - hrStorageIndex
+      labelname: hrStorageType
+      oid: 1.3.6.1.2.1.25.2.3.1.2
+      type: OctetString
+  - name: hrProcessorFrwID
+    oid: 1.3.6.1.2.1.25.3.3.1.1
+    type: OctetString
+    help: The product ID of the firmware associated with the processor. - 1.3.6.1.2.1.25.3.3.1.1
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrProcessorLoad
+    oid: 1.3.6.1.2.1.25.3.3.1.2
+    type: gauge
+    help: The average, over the last minute, of the percentage of time that this processor
+      was not idle - 1.3.6.1.2.1.25.3.3.1.2
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrSWRunStatus
+    oid: 1.3.6.1.2.1.25.4.2.1.7
+    type: gauge
+    help: The status of this running piece of software - 1.3.6.1.2.1.25.4.2.1.7
+    indexes:
+    - labelname: hrSWRunIndex
+      type: gauge
+    lookups:
+    - labels:
+      - hrSWRunIndex
+      labelname: hrSWRunName
+      oid: 1.3.6.1.2.1.25.4.2.1.2
+      type: DisplayString
+    enum_values:
+      1: running
+      2: runnable
+      3: notRunnable
+      4: invalid
+  - name: hrSWRunPerfMem
+    oid: 1.3.6.1.2.1.25.5.1.1.2
+    type: gauge
+    help: The total amount of real system memory allocated to this process. - 1.3.6.1.2.1.25.5.1.1.2
+    indexes:
+    - labelname: hrSWRunIndex
+      type: gauge
+    lookups:
+    - labels:
+      - hrSWRunIndex
+      labelname: hrSWRunName
+      oid: 1.3.6.1.2.1.25.4.2.1.2
+      type: DisplayString
+  retries: 1
 exos:
   walk:
   - 1.3.6.1.2.1.15.3.1.15
