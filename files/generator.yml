@@ -40,7 +40,7 @@ modules:
         drop_source_indexes: true
       - source_indexes: [ifIndex]
         lookup: 1.3.6.1.2.1.2.2.1.3     # ifType
-      - source_indexes: [jnxOperatingContentsIndex,jnxOperatingL1Index,jnxOperatingL2Index,jnxOperatingL3Index]
+      - source_indexes: [jnxOperatingContentsIndex, jnxOperatingL1Index, jnxOperatingL2Index, jnxOperatingL3Index]
         lookup: 1.3.6.1.4.1.2636.3.1.13.1.5
         drop_source_indexes: true
 
